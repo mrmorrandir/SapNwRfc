@@ -70,6 +70,10 @@ namespace SapNwRfc.Internal.Fields
 
                 errorInfo.ThrowOnError();
 
+                // Changed NAA1
+                // rows[i] = typeof(T) == typeof(string)
+                //    ? (T)Convert.ChangeType(StringField.Extract(interop, rowHandle, "FIELD_1").Value, typeof(T))
+                //    : OutputMapper.Extract<T>(interop, rowHandle);
                 rows[i] = OutputMapper.Extract<T>(interop, rowHandle);
 
                 resultCode = interop.MoveToNextRow(

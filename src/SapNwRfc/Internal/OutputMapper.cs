@@ -117,6 +117,10 @@ namespace SapNwRfc.Internal
                 convertToNonNullable = propertyInfo.PropertyType == typeof(TimeSpan);
                 extractMethod = GetMethodInfo(() => TimeField.Extract(default, default, default));
             }
+            else if (propertyInfo.PropertyType == typeof(string[]))
+            {
+                extractMethod = typeof(StringTableField).GetMethod(nameof(StringTableField.Extract));
+            }
             else if (propertyInfo.PropertyType.IsArray)
             {
                 Type elementType = propertyInfo.PropertyType.GetElementType();
